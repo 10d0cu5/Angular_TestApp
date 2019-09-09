@@ -29,21 +29,6 @@ export class EntryService {
       );
   }
 
-  
-  getEntryNo404<Data>(id: number): Observable<Entry> {
-    const url = `${this.entriesUrl}/?id=${id}`;
-    return this.http.get<Entry[]>(url)
-      .pipe(
-        map(entries => entries[0]), 
-        tap(h => {
-          const outcome = h ? `fetched` : `did not find`;
-          console.log(`${outcome} entry id=${id}`);
-        }),
-        catchError(this.handleError<Entry>(`getEntry id=${id}`))
-      );
-  }
-
- 
   getEntry(id: number): Observable<Entry> {
     const url = `${this.entriesUrl}/${id}`;
     return this.http.get<Entry>(url).pipe(
