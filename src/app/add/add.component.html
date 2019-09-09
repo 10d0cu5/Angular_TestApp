@@ -1,0 +1,49 @@
+<form id="addForm" #addEntryForm="ngForm" name="add_entry_form">
+    <div class="item_wrapper">
+        <div class="item_identifier">
+            Umsatzdatum:
+        </div>
+        <div class="item_input">
+            <input class="input_class" appEmptyDateReached appDateMaxReached [(ngModel)]="date.value" #date="ngModel" id="date" name="date" type="date" min="1900-01-01"  placeholder="dd-MM-yyyy" required="required" />
+            <div class="error_class" *ngIf="date.errors?.dateMaxReached">Das Datum darf nicht in der Zukunft liegen!</div>
+            <div class="error_class" *ngIf="date.errors?.emptyDateReached">Das Datum darf nicht leer sein!</div> 
+        </div>
+    </div>
+    <div class="item_wrapper">
+        <div class="item_identifier">
+            Umsatzart:
+        </div>
+        <div class="item_input">
+            <input class="input_class" appEmptyTypeReached [(ngModel)]="type.value" #type="ngModel" id="type" name="type" placeholder="Typ des Umsatzes" required="required"/>
+            <div class="error_class" *ngIf="type.errors?.emptyTypeReached">Umsatzart darf nicht leer sein!</div>
+        </div>
+    </div>
+    <div class="item_wrapper">
+        <div class="item_identifier">
+            Umsatzbeschreibung:
+        </div>
+        <div class="item_input">
+            <input class="input_class" appEmptyTextReached [(ngModel)]="text.value" #text="ngModel" id="text" name="text" placeholder="Beschreibung des Umsatzes" required="required" />
+            <div class="error_class" *ngIf="text.errors?.emptyTextReached">Beschreibung darf nicht leer sein!</div>
+        </div>
+    </div>
+    <div class="item_wrapper">
+        <div class="item_identifier">
+            Umsatzwert:
+        </div>
+        <div class="item_input">
+            <input class="input_class" appStructuralValueReached [(ngModel)]="value.value" #value="ngModel"  id="value" name="value" placeholder="Wertstellung des Umsatzes" required="required"/>
+            <div class="error_class"  *ngIf="value.errors?.emptyValueReached">Wert darf nicht leer sein!</div>
+            <div class="error_class" *ngIf="value.errors?.lowestValueReached">Wert darf nicht kleiner als 50 sein!</div>
+            <div class="error_class" *ngIf="value.errors?.highestValueReached">Wert darf nicht größer als 20.000.000 sein!</div>
+            <div class="error_class" *ngIf="value.errors?.commaValueReached">Wert darf nicht mehr als 2 Nachkommastellen haben!</div>
+            <div class="error_class" *ngIf="value.errors?.textValueReached">Nur Zahlen keine Buchstaben!</div>
+
+            
+        </div>
+    </div>
+    <!-- (click) passes input value to add() and then clears the input --> 
+</form>
+<button id="addButton" [disabled]="addEntryForm.invalid" (click)="add(date.value,type.value,text.value,value.value); date.value='';type.value='';text.value='';value.value=''">
+        Anlegen
+</button>

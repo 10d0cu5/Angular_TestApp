@@ -1,0 +1,51 @@
+<div id="dashboard_wrapper">
+    <div id="search_wrapper">
+                <input id="entriesFilter" #entriesFilter type="text" class="form-control" 
+                placeholder="Umsätze Filtern" (keyup)="filterEntries(entriesFilter.value)">
+    </div>
+    <div id="order_wrapper">
+        <span>Sortieren nach: </span>
+        <button class="sort_button" (click)="sortEntries('id')">ID</button>
+        <button class="sort_button" (click)="sortEntries('date')">Datum</button>
+        <button class="sort_button" (click)="sortEntries('value')">Wert</button>
+    </div>
+    <div id="list_wrapper" >
+        <div id="list_element" *ngFor="let entry of filteredEntries" >
+        <a id="link_element" 
+            routerLink="/umsatz/{{entry.id}}">
+            <div id="entry_element_container">
+                <div class="entry_item">
+                    <div class="entry_wrapper">
+                            <span class="entry_identifier">ID:</span>
+                            <span class="entry_value">{{entry.id}}</span>
+                    </div>
+                </div>
+                <div class="entry_item">
+                        <div class="entry_wrapper">
+                                <span class="entry_identifier">Datum:</span>
+                                <span class="entry_value">{{entry.date | format_date}}</span>
+                        </div>
+                </div>
+                <div class="entry_item">
+                        <div class="entry_wrapper">
+                                <span class="entry_identifier">Umsatzart:</span>
+                                <span class="entry_value">{{entry.type}}</span>
+                        </div>
+                </div>
+                <div class="entry_item">
+                        <div class="entry_wrapper">
+                                <span class="entry_identifier">Beschreibung:</span>
+                                <span class="entry_value">{{entry.text | cut_text }}</span>
+                        </div>
+                </div>
+                <div class="entry_item">
+                        <div class="entry_wrapper">
+                                <span class="entry_identifier">Wert:</span>
+                                <span class="entry_value">{{entry.value | format_value}}</span>
+                        </div>
+                </div>
+            </div>
+        </a>
+        </div>
+    </div>
+</div>

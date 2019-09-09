@@ -1,0 +1,62 @@
+<div *ngIf="entry">
+    <div id="entry_details">Umsatz-Details: {{entry.text | uppercase}} </div>
+</div>
+
+<form #editEntryForm="ngForm" id="edit_form" name="edit_entry_form">
+    <div class="form_item">
+        <div class="item_wrapper">
+            <div class="item_identifier">
+                ID:
+            </div>
+            <div class="item_input">
+                {{entry.id}}
+            </div>
+        </div>
+        <div class="item_wrapper">
+            <div class="item_identifier">
+                Datum:
+            </div>
+            <div class="item_input">
+                <input class="input_class" appEmptyDateReached appDateMaxReached #date="ngModel" id="date" name="date" [(ngModel)]="entry.date" type="date" min="1900-01-01" value="{{entry.date}}" placeholder="dd-MM-yyyy" required="required"/>
+                <div class="error_class" *ngIf="date.errors?.dateMaxReached">Das Datum darf nicht in der Zukunft liegen!</div>
+                <div class="error_class" *ngIf="date.errors?.emptyDateReached">Das Datum darf nicht leer sein!</div> 
+            </div>
+        </div>
+        <div class="item_wrapper">
+            <div class="item_identifier">
+                Umsatzart:
+            </div>
+            <div class="item_input">
+                <input class="input_class"  appEmptyTypeReached #type="ngModel" id="type" name="type" [(ngModel)]="entry.type" type="text" value="{{entry.type}}" placeholder="Typ des Umsatzes" required="required"/>
+                <div class="error_class" *ngIf="type.errors?.emptyTypeReached">Umsatzart darf nicht leer sein!</div>
+            </div>
+        </div>
+        <div class="item_wrapper">
+            <div class="item_identifier">
+                Beschreibung:
+            </div>
+            <div class="item_input">
+                <input class="input_class"  appEmptyTextReached #text="ngModel" id="text" name="text" [(ngModel)]="entry.text" type="text" value="{{entry.text}}" placeholder="Beschreibung des Umsatzes" required="required"/>
+                <div class="error_class" *ngIf="text.errors?.emptyTextReached">Beschreibung darf nicht leer sein!</div>
+            </div>
+        </div>
+        <div class="item_wrapper">
+            <div class="item_identifier">
+                Wert:
+            </div>
+            <div class="item_input">
+                <input class="input_class" appStructuralValueReached #value="ngModel" id="value" name="value" [(ngModel)]="entry.value" type="text" value="{{entry.value}}" placeholder="Wertstellung des Umsatzes" required="required"/>
+                <div class="error_class" *ngIf="value.errors?.emptyValueReached">Wert darf nicht leer sein!</div>
+                <div class="error_class" *ngIf="value.errors?.lowestValueReached">Wert darf nicht kleiner als 50 sein!</div>
+                <div class="error_class" *ngIf="value.errors?.highestValueReached">Wert darf nicht größer als 20.000.000 sein!</div>
+                <div class="error_class" *ngIf="value.errors?.commaValueReached">Wert darf nicht mehr als 2 Nachkommastellen haben!</div>
+                <div class="error_class" *ngIf="value.errors?.textValueReached">Nur Zahlen keine Buchstaben!</div>
+            </div>
+        </div>
+    </div>
+</form>
+<div id="button_container">
+    <button class="button_class" (click)="goBack()">Zurück</button>
+    <button class="button_class" (click)="delete()">Löschen</button>
+    <button class="button_class" (click)="save()" [disabled]="editEntryForm.invalid" >Speichern</button>        
+</div>

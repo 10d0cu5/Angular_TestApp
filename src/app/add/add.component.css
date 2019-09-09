@@ -1,0 +1,64 @@
+#addForm{
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: column;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 20px;
+    border-color: #898989;
+    border-style: inset;
+    border-width: 0.5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+#addButton{
+    margin-top:10px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: column;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 20px;
+    border-color: #898989;
+    border-style: inset;
+    border-width: 0.5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.input_class{
+    border:none;
+    background: none;
+    outline: none;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.item_wrapper{
+    display: flex;
+    flex-flow: row;
+}
+
+.item_wrapper + .item_wrapper{
+    margin-bottom: 10px;
+}
+
+.item_identifier{
+    margin-right: 10px;
+}
+.error_class{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 12px;
+    color: #D4A0A7;
+}
