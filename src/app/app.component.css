@@ -2,14 +2,15 @@
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     font-size: 28px;
-    color: #C84630;
+    color: black;
 }
 
 #nav_wrapper{
     display: flex;
     flex-flow: row;
+    justify-content: space-between;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-size: 20px;
@@ -18,9 +19,12 @@
 
 #nav_wrapper a{
     text-decoration: none;
-    color: #D4A0A7;
+    color: black;
 }
 
-#nav_wrapper a:first-child{
-    margin-right: 10px;
+
+
+#app_container{
+    max-width: 100%;
+    min-width: 500px;
 }
